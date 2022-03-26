@@ -12,4 +12,39 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+// DriveSubsystem Constants
+public static final class DriveConstants{
+
+    // Left Motors Constants
+    public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 0;
+    public static final int DRIVETRAIN_LEFT_BACK_SPARK = 1;
+
+    // Right Motors Constants
+    public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 2;
+    public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 7;
+}
+
+
+// Controller Constants (Ports)
+public static final class ControllerConstants{
+
+    // Xbox Controller Port
+    public static final int DriverControllerPort = 0;
+
+    // Joystick Controller Port
+    public static final int CopilotControllerPort = 1;
+}
+
+
+// Arm Constantss
+
+
+
+
+
+
+
+
+}
