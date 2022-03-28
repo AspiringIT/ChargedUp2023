@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
@@ -21,8 +21,8 @@ public class BallSubsystem extends SubsystemBase {
   // Intake Motor (PWM 5)
   private final Spark m_intake;
 
-  // Cylinder Firing Ball (Double Solenoid (0, 1) )
-  // private final DoubleSolenoid m_fire;
+  // Cylinder Firing Ball (Solenoid (0, 1) )
+  private final Solenoid m_fire;
 
   public BallSubsystem() {
 
@@ -37,7 +37,7 @@ public class BallSubsystem extends SubsystemBase {
     m_intake = new Spark(ArmConstants.ARM_PICKUP_SPARK);
 
     // Firing Cylinder
-   // m_fire = new DoubleSolenoid(0, 1);
+    m_fire = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
 
   }
 
@@ -64,7 +64,7 @@ public class BallSubsystem extends SubsystemBase {
 
   // Shoot Command for Firing Cylinder
   public void shootBall() {
-
+    m_fire.set(true);
   }
 
 }
