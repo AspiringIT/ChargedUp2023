@@ -15,7 +15,7 @@ package frc.robot;
 public final class Constants {
 
 // DriveSubsystem Constants
-public static final class DriveConstants{
+public static final class DriveConstants {
 
     // Left Motors Constants
     public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 0;
@@ -28,7 +28,7 @@ public static final class DriveConstants{
 
 
 // Controller Constants (Ports)
-public static final class ControllerConstants{
+public static final class ControllerConstants {
 
     // Xbox Controller Port
     public static final int DriverControllerPort = 0;
@@ -38,7 +38,21 @@ public static final class ControllerConstants{
 }
 
 
-// Arm Constantss
+// Arm Constants
+public static final class ArmConstants {
+
+    // Shooting Motor (PWM 4)
+    public static final int ARM_SHOOT_SPARK = 4;
+
+    // Intake Motor (PWM 5)
+    public static final int ARM_PICKUP_SPARK = 5;
+
+    // Angle Motor (PWM 6)
+    public static final int ARM_ANGLE_SPARK = 6;
+
+
+
+}
 
 
 
