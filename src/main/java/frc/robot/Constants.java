@@ -35,6 +35,15 @@ public static final class ControllerConstants {
 
     // Joystick Controller Port
     public static final int CopilotControllerPort = 1;
+    
+    // Joystick Trigger
+    public static final int TRIGGER_BUTTON = 0;
+    
+    // Joystick Intake Button
+    public static final int INTAKE_BUTTON = 0;
+
+    // Joystick Windup Button
+    public static final int WINDUP_BUTTON = 0;
 }
 
 
