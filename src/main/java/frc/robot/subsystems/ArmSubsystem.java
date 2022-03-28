@@ -43,7 +43,7 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   // Raise Command for Angle Motor (+)
-  public void raiseArm() {
+  public void tiltArm() {
     m_angle.set(0.5);
   }
 
