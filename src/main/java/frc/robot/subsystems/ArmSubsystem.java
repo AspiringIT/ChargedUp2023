@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
+import frc.robot.Constants.ControllerConstants;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class ArmSubsystem extends SubsystemBase {
   /** Creates a new ArmSubsystem. */
@@ -16,6 +18,9 @@ public class ArmSubsystem extends SubsystemBase {
 
   // Angle Motor (PWM 6)
   private final Spark m_angle;
+
+  // Joystick Controller on Port
+  Joystick m_copilotController =  new Joystick(ControllerConstants.CopilotControllerPort);
 
   // Arm Going Up (True)
   public boolean armUp = true;
@@ -43,8 +48,8 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   // Raise Command for Angle Motor (+)
-  public void tiltArm() {
-    m_angle.set(0.5);
+  public void raiseArm() {
+    m_angle.set(0.4);
   }
 
   // Lower Command for Angle Motor (-)

@@ -23,7 +23,7 @@ public static final class DriveConstants {
 
     // Right Motors Constants
     public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 2;
-    public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 7;
+    public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 3;
 }
 
 
@@ -35,15 +35,7 @@ public static final class ControllerConstants {
 
     // Joystick Controller Port
     public static final int CopilotControllerPort = 1;
-    
-    // Joystick Trigger
-    public static final int TRIGGER_BUTTON = 1;
-    
-    // Joystick Intake Button
-    public static final int INTAKE_BUTTON = 7;
 
-    // Joystick Windup Button
-    public static final int WINDUP_BUTTON = 2;
 }
 
 

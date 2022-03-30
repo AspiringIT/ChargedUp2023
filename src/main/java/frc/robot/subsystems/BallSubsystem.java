@@ -37,7 +37,7 @@ public class BallSubsystem extends SubsystemBase {
     m_intake = new Spark(ArmConstants.ARM_PICKUP_SPARK);
 
     // Firing Cylinder
-    m_fire = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
+    m_fire = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
 
   }
 

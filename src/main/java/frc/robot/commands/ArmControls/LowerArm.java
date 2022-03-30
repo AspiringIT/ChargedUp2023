@@ -7,22 +7,19 @@ package frc.robot.commands.ArmControls;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
 
-public class TiltArm extends CommandBase {
+public class LowerArm extends CommandBase {
   
   // Declare ArmSubsystem as raiser
   ArmSubsystem raiser;
-  
-  public TiltArm(ArmSubsystem subsystem) {
-    
+
+  public LowerArm(ArmSubsystem subsystem) {
+      
     // Establish raiser as name of ArmSubsystem
     raiser = subsystem;
 
     // addRequirements makes the ArmSubsystem a requirement to use
     addRequirements(raiser);
   }
-
-
-
 
   // Called when the command is initially scheduled.
   @Override
@@ -32,8 +29,8 @@ public class TiltArm extends CommandBase {
   @Override
   public void execute() {
 
-    // Command the Angle Motor to Tilt by referencing raiseArm()
-    raiser.tiltArm();  
+    // Command the Angle Motor to Lower by referencing lowerArm
+    raiser.lowerArm();
   }
 
   // Called once the command ends or is interrupted.
