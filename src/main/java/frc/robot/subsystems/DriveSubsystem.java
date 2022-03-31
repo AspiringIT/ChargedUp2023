@@ -28,15 +28,14 @@ public class DriveSubsystem extends SubsystemBase {
   private final MotorControllerGroup m_rightMotors = new MotorControllerGroup(RF, RB);
   
   // Makine Differential Drive Variable
-  private DifferentialDrive m_drive;
+  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
   
   public DriveSubsystem() {
 
     // Setting the Right Side Motors as Inverted
     m_rightMotors.setInverted(true);
 
-    // // Drive Base for Left and Right Side Motorss
-    m_drive = new DifferentialDrive(m_rightMotors, m_leftMotors);
+
   }
 
 

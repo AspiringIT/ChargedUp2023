@@ -57,7 +57,7 @@ public class RobotContainer {
   private final Compressor compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
 
   // Main Driver (Xbox) Controller
-  XboxController m_driverController = new XboxController(ControllerConstants.DriverControllerPort);
+ XboxController m_driverController = new XboxController(ControllerConstants.DriverControllerPort);
 
   // Copilot (Xbox) Controller
   XboxController m_copilotController =  new XboxController(ControllerConstants.CopilotControllerPort);
@@ -72,14 +72,11 @@ public class RobotContainer {
 
     // Main Arcade Drive (Y = fwd) (X = rot)
     m_robotDrive.setDefaultCommand(
-
-      new RunCommand(() -> m_robotDrive
-      .arcadeDrive(m_driverController.getLeftY(),
-                   m_driverController.getRightX()), m_robotDrive));
+        new DefaultDrive(m_robotDrive, m_driverController.getLeftY(),
+        m_driverController.getRightX());
 
   // Starts the Compressor and Tells it to keep running
   compressor.enableDigital();
-  compressor.disable();
 
   // Getting Compressor Current and pressureSwitch values
   boolean enabled = compressor.enabled();
