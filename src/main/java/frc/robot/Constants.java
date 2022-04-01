@@ -18,12 +18,12 @@ public final class Constants {
 public static final class DriveConstants {
 
     // Left Motors Constants
-    public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 0;
-    public static final int DRIVETRAIN_LEFT_BACK_SPARK = 1;
+    public static final int DRIVETRAIN_LEFT_FRONT_SPARK = 10;
+    public static final int DRIVETRAIN_LEFT_BACK_SPARK = 11;
 
     // Right Motors Constants
-    public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 2;
-    public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 3;
+    public static final int DRIVETRAIN_RIGHT_FRONT_SPARK = 12;
+    public static final int DRIVETRAIN_RIGHT_BACK_SPARK = 13;
 }
 
 
@@ -31,10 +31,10 @@ public static final class DriveConstants {
 public static final class ControllerConstants {
 
     // Xbox Controller Port
-    public static final int DriverControllerPort = 0;
+    public static final int DriverControllerPort = 1;
 
     // Joystick Controller Port
-    public static final int CopilotControllerPort = 1;
+    public static final int CopilotControllerPort = 0;
 
 }
 

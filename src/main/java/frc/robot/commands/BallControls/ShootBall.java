@@ -32,8 +32,24 @@ public class ShootBall extends CommandBase {
   @Override
   public void execute() {
 
+    // Start Windup Motor (4)
+    shooter.windupBall();
+
+    // Wait for 1 second
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {}
+
     // Command Firing Cylinder to Push Ball forward by referencing shootBall()
     shooter.shootBall();
+
+    // Wait for 1/2 second
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e) {}
+
+    // Stop Windup Motor (4)
+    shooter.stopBall();
   }
 
   // Called once the command ends or is interrupted.

@@ -53,7 +53,7 @@ public class BallSubsystem extends SubsystemBase {
 
   // Windup Command for Shooting Motor
   public void windupBall() {
-    m_shooter.set(0.75);
+    m_shooter.set(0.6);
   }
 
   // Stop Command for Shooting and Intake Motors

@@ -33,7 +33,7 @@ public class RaiseArm extends CommandBase {
   public void execute() {
 
     // Command the Angle Motor to Rise by referencing raiseArm()
-    raiser.raiseArm();  
+    raiser.raiseArm();
   }
 
   // Called once the command ends or is interrupted.

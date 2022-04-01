@@ -5,13 +5,14 @@
 package frc.robot;
 
 
+import static edu.wpi.first.wpilibj.XboxController.Button;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.commands.ArmControls.LowerArm;
 import frc.robot.commands.ArmControls.RaiseArm;
@@ -19,7 +20,6 @@ import frc.robot.commands.ArmControls.StopArm;
 import frc.robot.commands.BallControls.IntakeBall;
 import frc.robot.commands.BallControls.ShootBall;
 import frc.robot.commands.BallControls.StopBall;
-import frc.robot.commands.BallControls.WindupBall;
 import frc.robot.commands.ClimbControls.ClimbDown;
 import frc.robot.commands.ClimbControls.ClimbUp;
 import frc.robot.subsystems.ArmSubsystem;
@@ -27,7 +27,6 @@ import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -41,7 +40,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   // DriveSubsystem m_robotDrive
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  public final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   // ArmSubsystem raiser
   private final ArmSubsystem raiser = new ArmSubsystem();
@@ -71,17 +70,17 @@ public class RobotContainer {
     configureButtonBindings();
 
     // Main Arcade Drive (Y = fwd) (X = rot)
-    m_robotDrive.setDefaultCommand(
-        new DefaultDrive(m_robotDrive, m_driverController.getLeftY(),
-        m_driverController.getRightX());
-
+    /**m_robotDrive.setDefaultCommand(
+        new DefaultDrive(
+            m_robotDrive, m_driverController::getLeftY, m_driverController::getRightX));
+**/
   // Starts the Compressor and Tells it to keep running
   compressor.enableDigital();
 
   // Getting Compressor Current and pressureSwitch values
-  boolean enabled = compressor.enabled();
-  boolean pressureSwitch = compressor.getPressureSwitchValue();
-  double current = compressor.getCurrent();
+ // boolean enabled = compressor.enabled();
+  // boolean pressureSwitch = compressor.getPressureSwitchValue();
+  // double current = compressor.getCurrent();
 
 
   }
@@ -99,14 +98,6 @@ public class RobotContainer {
         .whileHeld(new IntakeBall(shooter));
 
     new JoystickButton(m_copilotController, Button.kLeftStick.value)
-        .whenReleased(new StopBall(shooter));
-
-    
-    // Windup the Shoot (Hold Button) (Motor 4)
-    new JoystickButton(m_copilotController, Button.kLeftBumper.value)
-        .whileHeld(new WindupBall(shooter));
-
-    new JoystickButton(m_copilotController, Button.kLeftBumper.value)
         .whenReleased(new StopBall(shooter));
 
 
