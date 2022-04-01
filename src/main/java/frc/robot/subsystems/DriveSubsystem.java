@@ -44,7 +44,7 @@ private final MotorControllerGroup m_leftMotors =
 
   // Arcade Drive for Robot Moving at 100% Power
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    m_drive.arcadeDrive(fwd, -0.7*rot);
 
   }
 }

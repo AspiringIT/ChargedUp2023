@@ -4,13 +4,17 @@
 
 package frc.robot.commands.BallControls;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.subsystems.BallSubsystem;
 
 public class ShootBall extends CommandBase {
   
   // Declare BallSubsystem as shooter
   BallSubsystem shooter;
+
+  private XboxController m_copilotController;
   
   public ShootBall(BallSubsystem subsystem) {
     
@@ -20,6 +24,7 @@ public class ShootBall extends CommandBase {
     // addRequirements makes the BallSubsystem a requirement to use
     addRequirements(shooter);
 
+    m_copilotController = new XboxController(ControllerConstants.CopilotControllerPort);
 
 
   }
@@ -32,12 +37,13 @@ public class ShootBall extends CommandBase {
   @Override
   public void execute() {
 
+    if (m_copilotController.getRightTriggerAxis() > 0.3) {
     // Start Windup Motor (4)
     shooter.windupBall();
 
     // Wait for 1 second
     try {
-      Thread.sleep(1000);
+      Thread.sleep(2000);
     } catch (InterruptedException e) {}
 
     // Command Firing Cylinder to Push Ball forward by referencing shootBall()
@@ -50,6 +56,8 @@ public class ShootBall extends CommandBase {
 
     // Stop Windup Motor (4)
     shooter.stopBall();
+    shooter.retractBall();
+  }
   }
 
   // Called once the command ends or is interrupted.

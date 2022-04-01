@@ -14,15 +14,15 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.ControllerConstants;
-import frc.robot.commands.ArmControls.LowerArm;
-import frc.robot.commands.ArmControls.RaiseArm;
-import frc.robot.commands.ArmControls.StopArm;
+//import frc.robot.commands.ArmControls.LowerArm;
+//import frc.robot.commands.ArmControls.RaiseArm;
+//import frc.robot.commands.ArmControls.StopArm;
 import frc.robot.commands.BallControls.IntakeBall;
 import frc.robot.commands.BallControls.ShootBall;
 import frc.robot.commands.BallControls.StopBall;
 import frc.robot.commands.ClimbControls.ClimbDown;
 import frc.robot.commands.ClimbControls.ClimbUp;
-import frc.robot.subsystems.ArmSubsystem;
+//simport frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -43,13 +43,19 @@ public class RobotContainer {
   public final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   // ArmSubsystem raiser
-  private final ArmSubsystem raiser = new ArmSubsystem();
+ // private final ArmSubsystem raiser = Robot.armSubsystem;
 
   // BallSubsystem shooter
   private final BallSubsystem shooter = new BallSubsystem();
 
   // ClimbSubsystem climber
   private final ClimbSubsystem climber = new ClimbSubsystem();
+
+  // ShootBall Command
+  private final ShootBall shootBall = new ShootBall(shooter);
+
+  // Climbup Command
+  private final ClimbUp climbUp = new ClimbUp(climber);
   
 
   // Compressor Declared Here
@@ -82,6 +88,10 @@ public class RobotContainer {
   // boolean pressureSwitch = compressor.getPressureSwitchValue();
   // double current = compressor.getCurrent();
 
+  shooter.setDefaultCommand(shootBall);
+
+  climber.setDefaultCommand(climbUp);
+
 
   }
 
@@ -101,16 +111,9 @@ public class RobotContainer {
         .whenReleased(new StopBall(shooter));
 
 
-    // Shoot the Ball (Hold Button) (Single Solenoid 0)
-    new JoystickButton(m_copilotController, Button.kRightBumper.value)
-        .whileHeld(new ShootBall(shooter));
-
-    new JoystickButton(m_copilotController, Button.kRightBumper.value)
-        .whenReleased(new StopBall(shooter));
-
 
     // Lower the Arm (Hold Button) (Motor 6)
-    new JoystickButton(m_copilotController, Button.kA.value)
+   /**  new JoystickButton(m_copilotController, Button.kA.value)
         .whileHeld(new LowerArm(raiser));
 
     new JoystickButton(m_copilotController, Button.kA.value)
@@ -123,16 +126,8 @@ public class RobotContainer {
 
     new JoystickButton(m_copilotController, Button.kB.value)
         .whenReleased(new StopArm(raiser));
+*/
 
-
-    // Extend Climbers (Toggle Button) (Double Solenoid 1 & 2)
-    new JoystickButton(m_driverController, Button.kLeftBumper.value)
-        .whenPressed(new ClimbUp(climber));
-
-    // Lower CLimbers (Toggle Button) (Double Solenoid 1 & 2)
-    new JoystickButton(m_driverController, Button.kRightBumper.value)
-        .whenPressed(new ClimbDown(climber));
-  
   }
 
   /**

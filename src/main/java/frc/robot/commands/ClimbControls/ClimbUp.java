@@ -4,13 +4,17 @@
 
 package frc.robot.commands.ClimbControls;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.subsystems.ClimbSubsystem;
 
 public class ClimbUp extends CommandBase {
   
   // Declare ClimbSubsystem as climber
   ClimbSubsystem climber;
+
+  private XboxController m_copilotController;
   
   public ClimbUp(ClimbSubsystem subsystem) {
   
@@ -19,6 +23,8 @@ public class ClimbUp extends CommandBase {
 
     // addRequirements makes the ClimbSubsystem a requirement to use
     addRequirements(climber);
+
+    m_copilotController = new XboxController(ControllerConstants.CopilotControllerPort);
   }
 
   // Called when the command is initially scheduled.
@@ -29,8 +35,13 @@ public class ClimbUp extends CommandBase {
   @Override
   public void execute() {
 
-    // Command Cylinders to go up
-    climber.climbUp();
+    if (m_copilotController.getRightBumperPressed()) {
+      climber.climbUp();
+    }
+    
+    if (m_copilotController.getLeftBumperPressed()) {
+      climber.climbDown();
+    }
   }
 
   // Called once the command ends or is interrupted.

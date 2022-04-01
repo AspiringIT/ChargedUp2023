@@ -4,8 +4,9 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ArmConstants;
@@ -22,7 +23,7 @@ public class BallSubsystem extends SubsystemBase {
   private final Spark m_intake;
 
   // Cylinder Firing Ball (Solenoid (0, 1) )
-  private final Solenoid m_fire;
+  private final DoubleSolenoid m_fire;
 
   public BallSubsystem() {
 
@@ -37,7 +38,8 @@ public class BallSubsystem extends SubsystemBase {
     m_intake = new Spark(ArmConstants.ARM_PICKUP_SPARK);
 
     // Firing Cylinder
-    m_fire = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+    m_fire = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 3);
+    m_fire.set(Value.kReverse);
 
   }
 
@@ -53,7 +55,7 @@ public class BallSubsystem extends SubsystemBase {
 
   // Windup Command for Shooting Motor
   public void windupBall() {
-    m_shooter.set(0.6);
+    m_shooter.set(0.7);
   }
 
   // Stop Command for Shooting and Intake Motors
@@ -64,7 +66,11 @@ public class BallSubsystem extends SubsystemBase {
 
   // Shoot Command for Firing Cylinder
   public void shootBall() {
-    m_fire.set(true);
+    m_fire.set(Value.kForward);
   }
 
+  // Retract Command for Firing Cylinder
+  public void retractBall() {
+    m_fire.set(Value.kReverse);
+  }
 }

@@ -47,14 +47,14 @@ public class ArmSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  // Raise Command for Angle Motor (+)
+  // Raise Command for Angle Motor (-)
   public void raiseArm() {
-    m_angle.set(0.4);
+    m_angle.set(-0.4);
   }
 
-  // Lower Command for Angle Motor (-)
+  // Lower Command for Angle Motor (+)
   public void lowerArm() {
-    m_angle.set(-0.4);
+    m_angle.set(0.4);
   }
 
   // Stop Command for Angle Motor (0)

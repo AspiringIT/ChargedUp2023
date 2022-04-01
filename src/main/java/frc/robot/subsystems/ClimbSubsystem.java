@@ -17,6 +17,7 @@ public class ClimbSubsystem extends SubsystemBase {
   
   public ClimbSubsystem() {
 
+
   // Two Cylinders For Climb (Ports 1, 2)
   m_climb = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 1, 2);
 
@@ -32,13 +33,11 @@ public class ClimbSubsystem extends SubsystemBase {
 
   // Climbup Command for Climbing Arms
   public void climbUp() {
-  m_climb.set(Value.kOff);
-  m_climb.set(Value.kForward);
+    m_climb.set(Value.kForward);
   }
 
   // Climbdown Command for Climbing Arms
   public void climbDown() {
-    m_climb.set(Value.kOff);
     m_climb.set(Value.kReverse);
   }
 
