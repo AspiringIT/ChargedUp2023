@@ -10,15 +10,15 @@ import frc.robot.subsystems.ArmSubsystem;
 public class LowerArm extends CommandBase {
   
   // Declare ArmSubsystem as raiser
-  ArmSubsystem raiser;
+  ArmSubsystem lower;
 
   public LowerArm(ArmSubsystem subsystem) {
       
     // Establish raiser as name of ArmSubsystem
-    raiser = subsystem;
+    lower = subsystem;
 
     // addRequirements makes the ArmSubsystem a requirement to use
-    addRequirements(raiser);
+    addRequirements(lower);
   }
 
   // Called when the command is initially scheduled.
@@ -30,13 +30,13 @@ public class LowerArm extends CommandBase {
   public void execute() {
 
     // Command the Angle Motor to Lower by referencing lowerArm
-    raiser.lowerArm();
+    lower.lowerArm();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
-
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {

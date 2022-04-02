@@ -37,11 +37,11 @@ public class ShootBall extends CommandBase {
   @Override
   public void execute() {
 
-    if (m_copilotController.getRightTriggerAxis() > 0.3) {
+    if (m_copilotController.getYButtonPressed()) {
     // Start Windup Motor (4)
     shooter.windupBall();
 
-    // Wait for 1 second
+    // Wait for 2 second
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {}

@@ -14,15 +14,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.ControllerConstants;
-//import frc.robot.commands.ArmControls.LowerArm;
-//import frc.robot.commands.ArmControls.RaiseArm;
-//import frc.robot.commands.ArmControls.StopArm;
+import frc.robot.commands.ArmControls.LowerArm;
+import frc.robot.commands.ArmControls.StopArm;
+import frc.robot.commands.AutonomousCommands.AutoDrive;
 import frc.robot.commands.BallControls.IntakeBall;
 import frc.robot.commands.BallControls.ShootBall;
 import frc.robot.commands.BallControls.StopBall;
-import frc.robot.commands.ClimbControls.ClimbDown;
 import frc.robot.commands.ClimbControls.ClimbUp;
-//simport frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -43,7 +42,7 @@ public class RobotContainer {
   public final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
   // ArmSubsystem raiser
- // private final ArmSubsystem raiser = Robot.armSubsystem;
+ public final ArmSubsystem lower = new ArmSubsystem();
 
   // BallSubsystem shooter
   private final BallSubsystem shooter = new BallSubsystem();
@@ -56,6 +55,11 @@ public class RobotContainer {
 
   // Climbup Command
   private final ClimbUp climbUp = new ClimbUp(climber);
+
+  // IntakeBall Command
+ // private final IntakeBall intakeBall = new IntakeBall(shooter);
+
+
   
 
   // Compressor Declared Here
@@ -65,10 +69,13 @@ public class RobotContainer {
  XboxController m_driverController = new XboxController(ControllerConstants.DriverControllerPort);
 
   // Copilot (Xbox) Controller
-  XboxController m_copilotController =  new XboxController(ControllerConstants.CopilotControllerPort);
+  XboxController m_copilotController = new XboxController(ControllerConstants.CopilotControllerPort);
 
   // Camera starts Capturing image and sending it to the Shuffleboard
   UsbCamera camera = CameraServer.startAutomaticCapture();
+
+  // Autonomous Command
+  private final Command m_auto = new AutoDrive(m_robotDrive, shooter);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -92,7 +99,6 @@ public class RobotContainer {
 
   climber.setDefaultCommand(climbUp);
 
-
   }
 
   /**
@@ -103,31 +109,22 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    // Pickup the Ball (Hold Button) (Motor 5)
-    new JoystickButton(m_copilotController, Button.kLeftStick.value)
-        .whileHeld(new IntakeBall(shooter));
+  new JoystickButton(m_copilotController, Button.kA.value)
+      .whileHeld(new IntakeBall(shooter));
 
-    new JoystickButton(m_copilotController, Button.kLeftStick.value)
-        .whenReleased(new StopBall(shooter));
-
+  new JoystickButton(m_copilotController, Button.kA.value)
+      .whenReleased(new StopBall(shooter));
 
 
     // Lower the Arm (Hold Button) (Motor 6)
-   /**  new JoystickButton(m_copilotController, Button.kA.value)
-        .whileHeld(new LowerArm(raiser));
-
-    new JoystickButton(m_copilotController, Button.kA.value)
-        .whenReleased(new StopArm(raiser));
-
-
-    // Raise the Arm (Hold Button) (Motor 6)
     new JoystickButton(m_copilotController, Button.kB.value)
-        .whileHeld(new RaiseArm(raiser));
+        .whileHeld(new LowerArm(lower));
 
     new JoystickButton(m_copilotController, Button.kB.value)
-        .whenReleased(new StopArm(raiser));
-*/
+        .whenReleased(new StopArm(lower));
 
+
+   
   }
 
   /**
@@ -137,6 +134,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return m_auto;
   }
 }

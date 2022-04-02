@@ -2,29 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.BallControls;
+package frc.robot.commands.AutonomousCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.BallSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 
-public class IntakeBall extends CommandBase {
-  
-  // Declare BallSubsystem as shooter
-  BallSubsystem shooter;
+public class AutoDrive extends SequentialCommandGroup {
+  /** Creates a new AutoDrive. */
+  public AutoDrive(DriveSubsystem drive, BallSubsystem shooter) {
+    addCommands(
+      new DriveTime(3, 0.5, drive)
+    );
 
-  //private XboxController m_copilotController;
 
-  public IntakeBall(BallSubsystem subsystem) {
-
-    // Establish shooter as name of BallSubsystem
-    shooter = subsystem;
-
-    // addRequirements makes the BallSubsystem a requirement to use
-    addRequirements(shooter);
-
-    //m_copilotController = new XboxController(ControllerConstants.CopilotControllerPort);
-
-    
   }
 
   // Called when the command is initially scheduled.
@@ -33,11 +24,7 @@ public class IntakeBall extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-  shooter.intakeBall();
-    
-}
-
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
